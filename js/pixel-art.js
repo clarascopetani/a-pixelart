@@ -20,6 +20,28 @@ var nombreColores = ['White', 'LightYellow',
   'DimGray', 'LightSlateGray', 'DarkSlateGray', 'Black'
 ];
 
+var paleta = document.getElementById('paleta');
+var grillaPixeles = document.getElementById('grilla-pixeles');
+var grillaCantidadPixeles = 1750;
+
+function generarPaleta(){
+  for(i = 0; i < nombreColores.length; i++){
+    var agregarColor = document.createElement('div');
+    agregarColor.style.backgroundColor = nombreColores[i];
+    paleta.appendChild(agregarColor).className = "color-paleta" ;
+  }
+}
+
+function generarGrilla(){
+  for(i = 0; i <= grillaCantidadPixeles; i++){
+    var agregarPixel = document.createElement('div');
+    grillaPixeles.appendChild(agregarPixel);
+ }
+}
+
+generarGrilla();
+generarPaleta();
+
 // Variable para guardar el elemento 'color-personalizado'
 // Es decir, el que se elige con la rueda de color.
 var colorPersonalizado = document.getElementById('color-personalizado');
@@ -29,6 +51,7 @@ colorPersonalizado.addEventListener('change',
     // Se guarda el color de la rueda en colorActual
     colorActual = colorPersonalizado.value;
     // Completar para que cambie el indicador-de-color al colorActual
+    
 
 
   })
