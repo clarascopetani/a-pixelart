@@ -140,6 +140,9 @@ img {
    margin: 10px 0;
    justify-content: space-between;
  }
+
+
+
 #indicador-de-color {
   height: 30px;
   width: 30px;
@@ -158,9 +161,12 @@ img {
   width: 29px;
   background: url(../img/empty.gif);
 }
-#indicador-de-color-mensaje {
+
+ul.input-color p{
   color: white;
+  font-size: .8rem;
 }
+
 
 #result {
   color: white;

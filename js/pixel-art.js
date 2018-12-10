@@ -42,6 +42,32 @@ function generarGrilla(){
 generarGrilla();
 generarPaleta();
 
+function colorSeleccionado(){
+  var colorClickeadoPaleta = document.getElementById('paleta');
+  colorClickeadoPaleta.addEventListener("click", modificarColor);
+}
+
+function modificarColor(e){
+  var colorPersonalizado = document.getElementById('indicador-de-color');
+  var color = e.target.style.backgroundColor;
+  console.log(colorPersonalizado, color);
+  colorPersonalizado.style.backgroundColor = color;
+}
+
+colorSeleccionado();
+
+function pintarGrilla(){
+  var cambiarColorDiv = document.getElementById('grilla-pixeles');
+  cambiarColorDiv.addEventListener("click", function(e){
+    var nuevoColor = document.getElementById('indicador-de-color').style.backgroundColor;
+    e.target.style.backgroundColor  = nuevoColor;
+  });
+}
+
+pintarGrilla();
+
+////////////////////////////////////////////////
+
 // Variable para guardar el elemento 'color-personalizado'
 // Es decir, el que se elige con la rueda de color.
 var colorPersonalizado = document.getElementById('color-personalizado');
@@ -51,7 +77,7 @@ colorPersonalizado.addEventListener('change',
     // Se guarda el color de la rueda en colorActual
     colorActual = colorPersonalizado.value;
     // Completar para que cambie el indicador-de-color al colorActual
-    
+    var elemento = document.getElementById("cliqueame");
 
 
   })
