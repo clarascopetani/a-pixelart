@@ -22,8 +22,10 @@ var nombreColores = ['White', 'LightYellow',
 
 var paleta = document.getElementById('paleta');
 var grillaPixeles = document.getElementById('grilla-pixeles');
-var grillaCantidadPixeles = 1750;
+var indicadorColor = document.getElementById('indicador-de-color');
+var colorPersonalizado = document.getElementById('color-personalizado');
 
+/* ARMAR JUEGO */
 function generarPaleta(){
   for(i = 0; i < nombreColores.length; i++){
     var agregarColor = document.createElement('div');
@@ -33,52 +35,56 @@ function generarPaleta(){
 }
 
 function generarGrilla(){
-  for(i = 0; i <= grillaCantidadPixeles; i++){
+  var grilla = 1750;
+  for(i = 0; i <= grilla; i++){
     var agregarPixel = document.createElement('div');
     grillaPixeles.appendChild(agregarPixel);
  }
 }
 
-generarGrilla();
-generarPaleta();
-
-function colorSeleccionado(){
-  var colorClickeadoPaleta = document.getElementById('paleta');
-  colorClickeadoPaleta.addEventListener("click", modificarColor);
-}
-
 function modificarColor(e){
-  var colorPersonalizado = document.getElementById('indicador-de-color');
   var color = e.target.style.backgroundColor;
-  console.log(colorPersonalizado, color);
-  colorPersonalizado.style.backgroundColor = color;
+  indicadorColor.style.backgroundColor = color;
+  console.log("Cambio Color");
 }
 
-colorSeleccionado();
+/* FUNCIONES PINTAR */ 
 
-function pintarGrilla(){
-  var cambiarColorDiv = document.getElementById('grilla-pixeles');
-  cambiarColorDiv.addEventListener("click", function(e){
-    var nuevoColor = document.getElementById('indicador-de-color').style.backgroundColor;
-    e.target.style.backgroundColor  = nuevoColor;
-  });
-}
+paleta.addEventListener("click", modificarColor);
 
-pintarGrilla();
-
-////////////////////////////////////////////////
+grillaPixeles.addEventListener("mousemove", pintarPixel);
 
 // Variable para guardar el elemento 'color-personalizado'
 // Es decir, el que se elige con la rueda de color.
-var colorPersonalizado = document.getElementById('color-personalizado');
-
+//var colorPersonalizado = document.getElementById('color-personalizado');
 colorPersonalizado.addEventListener('change', 
   (function() {
     // Se guarda el color de la rueda en colorActual
     colorActual = colorPersonalizado.value;
-    // Completar para que cambie el indicador-de-color al colorActual
-    var elemento = document.getElementById("cliqueame");
-
-
+    // Completar para que cambie el indicador-de-color al colorActual 
+    indicadorColor.style.backgroundColor = colorActual;
   })
 );
+
+function pintarPixel(e){
+  var nuevoColor = indicadorColor.style.backgroundColor;
+  if(mouseApretado == true){
+  e.target.style.backgroundColor  = nuevoColor;
+  }
+};
+
+
+/* DETECTA EL MOUSE */ 
+var mouseApretado = false;
+grillaPixeles.addEventListener("mousedown", function(){
+  console.log("aprieto mouse", mouseApretado);
+  mouseApretado = true;
+});
+
+grillaPixeles.addEventListener("mouseup", function(){
+  console.log("solto mouse", mouseApretado);
+  mouseApretado = false;
+});
+
+generarGrilla();
+generarPaleta();
