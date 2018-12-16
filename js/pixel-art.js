@@ -24,6 +24,7 @@ var paleta = document.getElementById('paleta');
 var grillaPixeles = document.getElementById('grilla-pixeles');
 var indicadorColor = document.getElementById('indicador-de-color');
 var colorPersonalizado = document.getElementById('color-personalizado');
+var grilla = 1750;
 
 /* ARMAR JUEGO */
 function generarPaleta(){
@@ -35,7 +36,6 @@ function generarPaleta(){
 }
 
 function generarGrilla(){
-  var grilla = 1750;
   for(i = 0; i <= grilla; i++){
     var agregarPixel = document.createElement('div');
     grillaPixeles.appendChild(agregarPixel);
@@ -69,10 +69,9 @@ colorPersonalizado.addEventListener('change',
 function pintarPixel(e){
   var nuevoColor = indicadorColor.style.backgroundColor;
   if(mouseApretado == true){
-  e.target.style.backgroundColor  = nuevoColor;
+  e.target.style.backgroundColor = nuevoColor;
   }
 };
-
 
 /* DETECTA EL MOUSE */ 
 var mouseApretado = false;
@@ -88,3 +87,35 @@ grillaPixeles.addEventListener("mouseup", function(){
 
 generarGrilla();
 generarPaleta();
+
+/* BOTONES */
+
+$(document).ready(function(){
+  $("#guardar").click(function(){
+    guardarPixelArt();
+  });
+
+  $("#borrar").click(function(){
+    console.log("borrar");
+    $('#grilla-pixeles').children("div").animate({"backgroundColor": "white"}, 1000);
+  });
+
+  $("#batman").click(function(){
+    cargarSuperheroe(batman)
+  });
+
+  $("#wonder").click(function(){
+    cargarSuperheroe(wonder)
+  });
+
+  $("#flash").click(function(){
+    cargarSuperheroe(flash)
+  });
+
+  $("#invisible").click(function(){
+    cargarSuperheroe(invisible)
+  });
+
+});
+
+
