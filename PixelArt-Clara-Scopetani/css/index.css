@@ -162,11 +162,11 @@ img {
   background: url(../img/empty.gif);
 }
 
-ul.input-color p {
+ul.input-color p{
   color: white;
-  font-size: .7rem;
-  font-family: 'Press Start 2P';
+  font-size: .8rem;
 }
+
 
 #result {
   color: white;
